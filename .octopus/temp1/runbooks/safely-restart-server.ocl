@@ -17,11 +17,23 @@ process {
         action {
             action_type = "Octopus.Script"
             properties = {
-                Octopus.Action.Script.ScriptBody = "echo 'Safely restart the server!'"
-                Octopus.Action.Script.ScriptSource = "Inline"
-                Octopus.Action.Script.Syntax = "PowerShell"
+                Octopus.Action.Package.DownloadOnTentacle = "False"
+                Octopus.Action.Package.FeedId = "octopus-server-built-in"
+                Octopus.Action.Package.PackageId = "HelloPackage"
+                Octopus.Action.Script.ScriptFileName = "script.sh"
+                Octopus.Action.Script.ScriptSource = "Package"
             }
             worker_pool = "hosted-ubuntu"
+
+            packages {
+                acquisition_location = "Server"
+                feed = "octopus-server-built-in"
+                package_id = "HelloPackage"
+                properties = {
+                    SelectionMode = "immediate"
+                }
+                version = "1.0.0"
+            }
         }
     }
 }
