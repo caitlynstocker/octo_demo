@@ -1,6 +1,6 @@
 name = "Published"
 default_guided_failure_mode = "EnvironmentDefault"
-description = "This Runbook is published"
+description = "This Runbook is safe for general use!"
 
 connectivity_policy {
     allow_deployments_to_no_targets = true
